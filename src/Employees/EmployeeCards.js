@@ -4,7 +4,7 @@ import axios from 'axios';
   
 const apiUrl = 'http://dummy.restapiexample.com/api/v1/employees';   
   
-class EmployeeList extends React.Component{  
+class EmployeeCards extends React.Component{  
     constructor(props){  
         super(props);  
         this.state = {  
@@ -90,9 +90,9 @@ class EmployeeList extends React.Component{
         else  
         {  
             return(  
-         <div>  
+                <div>  
                       
-                  <Table>  
+                  <Table striped bordered hover>  
                     <thead className="btn-primary">  
                       <tr>  
                         <th>Id</th>  
@@ -124,4 +124,4 @@ class EmployeeList extends React.Component{
     }  
 }  
   
-export default EmployeeList;
+export default EmployeeCards;

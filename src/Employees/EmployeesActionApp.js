@@ -4,6 +4,7 @@ import { Container, Button } from 'react-bootstrap';
  
 import AddEmployee from './AddEmployee';
 import EmployeeList from './EmployeeList';
+import EmployeeCards from './EmployeeCards';
   
 class EmployeeActionApp extends Component {  
   constructor(props) {  
@@ -37,9 +38,7 @@ class EmployeeActionApp extends Component {
     })  
   }  
   
-  onFormSubmit(data) {  
-    this.setState({ isAddUser: true });  
-    this.setState({ isUserDetails: false });  
+  onFormSubmit(data) {   
     if (this.state.isEdituser) {  
     //  axios.put(apiUrl + 'UpdateEmployeeDetails',data).then(result => {  
     //   alert(result.data);  
@@ -53,6 +52,7 @@ class EmployeeActionApp extends Component {
          this.setState({     
           isAddUser: false,  
           isEdituser: false,
+          isUserDetails: true,
           userData: data
         })  
     } else {  
@@ -69,6 +69,7 @@ class EmployeeActionApp extends Component {
         this.setState({     
           isAddUser: false,  
           isEdituser: false,
+          isUserDetails: true,
           userData: data
         })  
   
@@ -77,8 +78,8 @@ class EmployeeActionApp extends Component {
   }  
   
   editUser = user => {  
-  
-    this.setState({ isUserDetails: false,
+    this.setState({ 
+      isUserDetails: false,
         isEdituser: true,  
         isAddUser: true,  
         userData: user });  
@@ -92,14 +93,14 @@ class EmployeeActionApp extends Component {
     }  
     return (  
       <div className="App">  
- <Container>  
-        <h1 style={{ textAlign: 'center' }}>CURD operation in React</h1>  
-        <hr></hr>  
-        {!this.state.isUserDetails && <Button variant="primary" onClick={() => this.onDetails()}> User Details</Button>}  
-        {!this.state.isAddUser && <Button variant="primary" onClick={() => this.onCreate()}>Add User</Button>}  
-        <br></br>  
-        {!this.state.isAddUser && <EmployeeList employee={this.state.userData} editUser={this.editUser} />}  
-        {userForm}  
+        <Container>  
+            <h1 style={{ textAlign: 'center' }}>Employee Details</h1>  
+            <hr></hr>  
+            {!this.state.isUserDetails && <Button variant="primary" onClick={() => this.onDetails()}> User Details</Button>}  
+            {!this.state.isAddUser && <Button variant="primary" onClick={() => this.onCreate()}>Add User</Button>}  
+            <br></br>  
+            {!this.state.isAddUser && <EmployeeCards employee={this.state.userData} editUser={this.editUser} />}  
+            {userForm}  
         </Container>  
       </div>  
     );  
