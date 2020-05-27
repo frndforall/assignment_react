@@ -40,6 +40,8 @@ class EmployeeList extends React.Component{
 
 
     updateEmployeeData(employee, data) {
+         // TODO: ADD API to implement the update operation and update the UI. We are performing the operations to find the id and update the data locally.
+        // Data would refresh once we hit the api as no api operation is performed.
         var updateData= [...data];
         var index = updateData.findIndex(emp => emp.id === employee.id);
         console.log(index);
@@ -56,6 +58,8 @@ class EmployeeList extends React.Component{
     }
 
     addEmployee(employee,data) {
+        // TODO: ADD API to implement the add operation and update the UI. We are performing the operations to find the id and update the data locally.
+        // Data would refresh once we hit the api as no api operation is performed.
         const employees = [...data];
         employee.id=employees.length+1;
         var updatedData = [...data,employee];

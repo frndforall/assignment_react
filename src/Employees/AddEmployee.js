@@ -12,7 +12,7 @@ class AddEmployee extends React.Component {
       employee_age: '',  
     }  
 
-    if (this.props.user && this.props.user.id) {  
+    if (this.props.isEdit) {  
       this.state = props.user  
     } else {  
       this.state = this.initialState;  
@@ -33,9 +33,14 @@ class AddEmployee extends React.Component {
   }  
   
   handleSubmit(event) {  
-    event.preventDefault();  
-    this.props.onFormSubmit(this.state);  
-    this.setState(this.initialState);  
+    event.preventDefault();
+    var data = this.state;
+    if(data.employee_name && data.employee_age && data.employee_salary){  
+        this.props.onFormSubmit(this.state);  
+        this.setState(this.initialState);  
+    } else {
+      alert('Please enter all fields for submission/update');
+    }
   }  
   render() {  
     let pageTitle;  
@@ -68,7 +73,7 @@ class AddEmployee extends React.Component {
               <Form.Group controlId="salary">  
                 <Form.Label>Salary</Form.Label>  
                 <Form.Control  
-                  type="text"  
+                  type="number"  
                   name="employee_salary"  
                   value={this.state.employee_salary}  
                   onChange={this.handleChange}  
@@ -77,7 +82,7 @@ class AddEmployee extends React.Component {
               <Form.Group controlId="Age">  
                 <Form.Label>Age</Form.Label>  
                 <Form.Control  
-                  type="text"  
+                  type="number"  
                   name="employee_age"  
                   value={this.state.employee_age}  
                   onChange={this.handleChange}  

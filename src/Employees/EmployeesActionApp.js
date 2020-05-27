@@ -1,11 +1,9 @@
 import React, { Component } from 'react';  
   
 import { Container, Button } from 'react-bootstrap';  
-
-import axios from 'axios';  
+ 
 import AddEmployee from './AddEmployee';
 import EmployeeList from './EmployeeList';
-const apiUrl = 'https://reqres.in/api/users';  
   
 class EmployeeActionApp extends Component {  
   constructor(props) {  
@@ -25,12 +23,18 @@ class EmployeeActionApp extends Component {
   }  
   
   onCreate() {  
-    this.setState({ isAddUser: true });  
-    this.setState({ isUserDetails: false });  
+    this.setState({     
+      isAddUser: true,  
+      isEdituser: false,
+      isUserDetails: false
+    })  
   }  
   onDetails() {  
-    this.setState({ isUserDetails: true });  
-    this.setState({ isAddUser: false });  
+    this.setState({     
+      isAddUser: false,  
+      isEdituser: false,
+      isUserDetails: true
+    })  
   }  
   
   onFormSubmit(data) {  
@@ -82,8 +86,9 @@ class EmployeeActionApp extends Component {
   
   render() {  
     let userForm;  
+    debugger;
     if (this.state.isAddUser || this.state.isEditUser) {  
-      userForm = <AddEmployee onFormSubmit={this.onFormSubmit} user={this.state.userData} />         
+      userForm = <AddEmployee onFormSubmit={this.onFormSubmit} isEdit={this.state.isEdituser} user={this.state.userData} />         
     }  
     return (  
       <div className="App">  
